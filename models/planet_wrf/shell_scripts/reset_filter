@@ -1,0 +1,8 @@
+rm -f obs_seq.out
+rm -f wrf.info
+rm -f filter_control00000
+rm -rf advance_temp1
+rm -f postfilter*
+rm -f backup.?.tar.gz
+cp ./init_files_filter/* ./
+cp input.nml.orig input.nml

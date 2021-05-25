@@ -1,0 +1,5 @@
+rm -f obs_seq.out
+rm -f wrf.info
+rm -f filter_control00000
+rm -rf advance_temp1
+cp ./init_files/* ./

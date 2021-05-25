@@ -1,0 +1,7 @@
+Temp=(T+global@T0)*((P+PB)/global@P0)^(global@R_D/global@CP);
+Temp@FieldType=T@FieldType;
+Temp@MemoryOrder=T@MemoryOrder;
+Temp@units=T@units;
+Temp@stagger=T@stagger;
+Temp@coordinates=T@coordinates;
+Temp@description="Temperature";
