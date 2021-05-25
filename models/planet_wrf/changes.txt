@@ -5,3 +5,5 @@
 * model_mod.html missing
 * removed model_mod_voriticity
 * created shell_scripts directory
+* copied WRF_DART_utils directory, lightly modified.
+* time manager looks okay
