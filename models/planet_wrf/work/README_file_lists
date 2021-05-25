@@ -1,0 +1,4 @@
+wrf_input.list -> input filenames for wrf (e.g. wrfinput_d01)
+wrf_output.list -> output filenames for wrf (e.g. wrfout_d01)
+filter_input.list -> input_filenames for dart (e.g. prefilter_state_d01)
+filter_output.list -> input_filenames for dart (e.g. postfilter_state_d01)
