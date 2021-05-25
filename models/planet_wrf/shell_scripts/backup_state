@@ -1,0 +1,51 @@
+#!/bin/bash
+
+function remove_linked_file {
+    link=$1
+    newlink=${2:-""}
+    if [ -L $link ] ; then
+	if [ -e `readlink $link` ] ; then
+	    rm -f `readlink $link`
+	fi
+	rm -f $link
+    fi
+
+    if [ -L $newlink ]; then
+#	echo linking $newlink
+	if [ -e `readlink $newlink` ] ; then
+	    ln -s `readlink $newlink` $link
+	fi
+	rm -f $newlink
+    fi
+}
+
+function move_link_back {
+    to=$1
+    from=$2
+
+    remove_linked_file $to $from
+}
+
+directory=$1
+time=$2
+
+dir=$directory/backup.$time
+file=$directory/backup.$time.tar.gz
+mkdir -p $dir
+cp -R wrfout_d01_$time.* $dir
+cp input.nml input.nml.orig $dir
+cp wrfinput_d01 $dir
+cp obs_seq.out $dir
+tar cfz $file $dir --force-local
+rm -rf $dir
+
+pushd $directory >/dev/null 2>&1
+for i in 4 3 2 1
+do
+    move_link_back backup.$(($i+1)).tar.gz backup.$i.tar.gz
+done
+
+#finally new link
+ln -s backup.$time.tar.gz backup.1.tar.gz
+popd > /dev/null 2>&1
+

@@ -1,0 +1,24 @@
+#!/bin/bash
+datestr=`date +%Y%m%d_%H%M%S`
+prefix=$1
+dir=output_${prefix}_${datestr}
+
+if [ -h output_${prefix}.last ] ; then
+    rm -f output_${prefix}.last
+fi
+    
+if [ -e $dir ] ; then
+   if [ ! -d $dir ] ; then
+      echo "Error: $dir exists and is not a directory"
+   else
+       rm -rf $dir
+   fi
+fi
+
+mkdir $dir
+mkdir ${dir}/wrflogs
+mkdir ${dir}/logs
+mkdir ${dir}/wrfout
+mkdir ${dir}/obs
+ln -s $dir output_${prefix}.last
+echo $dir

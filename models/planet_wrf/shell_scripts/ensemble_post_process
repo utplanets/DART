@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#post process this ensemble
+script=ncap.temp
+time=$1
+path=$2
+prefix=${path}wrfout_d01_
+
+for file in ${prefix}${time}.[0-9][0-9][0-9][0-9]
+do
+ncap -O -S $script $file -o $file.tmp && mv $file.tmp $file
+done
+
+nces -y avg ${prefix}${time}.[0-9][0-9][0-9][0-9] -O -o ${prefix}${time}.mean
+
+#sqravg
+nces -y sqravg ${prefix}${time}.[0-9][0-9][0-9][0-9] -O -o ${prefix}${time}.sqravg
+#avgsqr
+nces -y avgsqr ${prefix}${time}.[0-9][0-9][0-9][0-9] -O -o ${prefix}${time}.avgsqr
+#var
+ncdiff ${prefix}${time}.avgsqr ${prefix}${time}.sqravg -O -o ${prefix}${time}.var
+#std
+nces -y sqrt ${prefix}${time}.var -O -o ${prefix}${time}.std
+
+#clean up
+rm -f ${prefix}${time}.sqravg ${prefix}${time}.avgsqr ${prefix}${time}.var

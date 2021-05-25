@@ -1,0 +1,17 @@
+#!/bin/csh
+#convert a wrf file to a dart file by extracting the state vector fields.
+
+# DMODS - we don't need to generate a filter restart file anymore 
+# instead, we extract the cycle variables 
+# # create new input to DART (taken from "wrfinput") 
+# ${CENTRALDIR}/wrf_to_dart >&! out.wrf_to_dart 
+# ${MOVE} dart_wrf_vector ${CENTRALDIR}/${output_file} 
+# set echo
+set input_file = $1
+set output_file = $2
+set namelist_file = $3
+
+set baselist = ",Times"
+set extract_str = `pmo state-variable-list $namelist_file`$baselist
+
+ncks -O -v ${extract_str} ${input_file} ${output_file}
