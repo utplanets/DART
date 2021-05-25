@@ -35,11 +35,8 @@ use obs_sequence_mod, only : obs_sequence_type, static_init_obs_sequence, &
 use    utilities_mod, only : find_namelist_in_file, check_namelist_read, &
                              initialize_utilities, finalize_utilities
 use  netcdf_utilities_mod, only : nc_check
-use     obs_kind_mod, only : RADIOSONDE_U_WIND_COMPONENT, ACARS_U_WIND_COMPONENT, &
-                             MARINE_SFC_U_WIND_COMPONENT, LAND_SFC_U_WIND_COMPONENT, &
-                             METAR_U_10_METER_WIND, GPSRO_REFRACTIVITY, &
-                             SAT_U_WIND_COMPONENT, PROFILER_U_WIND_COMPONENT, VORTEX_LAT
-use time_manager_mod, only : time_type, set_calendar_type, GREGORIAN, set_time
+use     obs_kind_mod, only : TEMPERATURE, SURFACE_PRESSURE
+use time_manager_mod, only : time_type, set_calendar_type, GREGORIAN_MARS, set_time
 use ensemble_manager_mod, only : ensemble_type, init_ensemble_manager, end_ensemble_manager
 use        model_mod, only : static_init_model
 use           netcdf
@@ -359,10 +356,7 @@ use  obs_sequence_mod, only : obs_sequence_type, obs_type, init_obs, set_obs_def
                               get_last_obs, insert_obs_in_seq, destroy_obs_sequence
 use       obs_def_mod, only : obs_def_type, get_obs_def_type_of_obs, set_obs_def_time, &
                               get_obs_def_location, get_obs_def_time
-use      obs_kind_mod, only : RADIOSONDE_U_WIND_COMPONENT, ACARS_U_WIND_COMPONENT, &
-                              LAND_SFC_U_WIND_COMPONENT, MARINE_SFC_U_WIND_COMPONENT, &
-                              METAR_U_10_METER_WIND, GPSRO_REFRACTIVITY, &
-                              SAT_U_WIND_COMPONENT, VORTEX_LAT
+use      obs_kind_mod, only : TEMPERATURE, SURFACE_PRESSURE
 use         model_mod, only : get_domain_info 
 
 implicit none
@@ -990,27 +984,7 @@ use  obs_sequence_mod, only : obs_sequence_type, obs_type, init_obs, &
                               destroy_obs_sequence, read_obs_seq, set_obs_def
 use       obs_def_mod, only : obs_def_type, get_obs_def_type_of_obs, get_obs_def_location, &
                               set_obs_def_time
-use      obs_kind_mod, only : RADIOSONDE_U_WIND_COMPONENT, RADIOSONDE_V_WIND_COMPONENT, &
-                              RADIOSONDE_SURFACE_ALTIMETER, RADIOSONDE_TEMPERATURE, &
-                              RADIOSONDE_SPECIFIC_HUMIDITY, RADIOSONDE_DEWPOINT, &
-                              RADIOSONDE_RELATIVE_HUMIDITY, GPSRO_REFRACTIVITY, &
-                              AIRCRAFT_U_WIND_COMPONENT, AIRCRAFT_V_WIND_COMPONENT, &
-                              AIRCRAFT_TEMPERATURE, AIRCRAFT_SPECIFIC_HUMIDITY, &
-                              ACARS_DEWPOINT, ACARS_RELATIVE_HUMIDITY, &
-                              ACARS_U_WIND_COMPONENT, ACARS_V_WIND_COMPONENT, &
-                              ACARS_TEMPERATURE, ACARS_SPECIFIC_HUMIDITY, &
-                              MARINE_SFC_U_WIND_COMPONENT, MARINE_SFC_V_WIND_COMPONENT, &
-                              MARINE_SFC_TEMPERATURE, MARINE_SFC_SPECIFIC_HUMIDITY, &
-                              MARINE_SFC_RELATIVE_HUMIDITY, MARINE_SFC_DEWPOINT, &
-                              LAND_SFC_U_WIND_COMPONENT, LAND_SFC_V_WIND_COMPONENT, &
-                              LAND_SFC_TEMPERATURE, LAND_SFC_SPECIFIC_HUMIDITY, &
-                              LAND_SFC_RELATIVE_HUMIDITY, LAND_SFC_DEWPOINT, &
-                              METAR_U_10_METER_WIND, METAR_V_10_METER_WIND, &
-                              METAR_TEMPERATURE_2_METER, METAR_SPECIFIC_HUMIDITY_2_METER, &
-                              METAR_DEWPOINT_2_METER, METAR_RELATIVE_HUMIDITY_2_METER, &
-                              METAR_ALTIMETER, MARINE_SFC_ALTIMETER, LAND_SFC_ALTIMETER, &
-                              SAT_U_WIND_COMPONENT, SAT_V_WIND_COMPONENT, &
-                              VORTEX_LAT, VORTEX_LON, VORTEX_PMIN, VORTEX_WMAX
+use      obs_kind_mod, only : TEMPERATURE, SURFACE_PRESSURE
 use         model_mod, only : get_domain_info
 
 implicit none
@@ -1346,11 +1320,7 @@ use  obs_sequence_mod, only : obs_sequence_type, obs_type, init_obs, &
 use       obs_def_mod, only : obs_def_type, get_obs_def_location, &
                               get_obs_def_type_of_obs, get_obs_def_error_variance, &
                               get_obs_def_time
-use      obs_kind_mod, only : AIRCRAFT_U_WIND_COMPONENT, ACARS_U_WIND_COMPONENT, &
-                              AIRCRAFT_V_WIND_COMPONENT, ACARS_V_WIND_COMPONENT, &
-                              AIRCRAFT_TEMPERATURE, ACARS_TEMPERATURE, &
-                              AIRCRAFT_SPECIFIC_HUMIDITY, ACARS_SPECIFIC_HUMIDITY, &
-                              ACARS_DEWPOINT, ACARS_RELATIVE_HUMIDITY
+use      obs_kind_mod, only : TEMPERATURE, SURFACE_PRESSURE
 
 implicit none
 
